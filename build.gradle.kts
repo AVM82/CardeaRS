@@ -8,9 +8,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(rs.school.rs.android2021task6.BuildPlugins.gradle)
-        classpath(rs.school.rs.android2021task6.BuildPlugins.kotlin)
-        classpath(rs.school.rs.android2021task6.BuildPlugins.hilt)
+        classpath(org.rs.cardears.BuildPlugins.gradle)
+        classpath(org.rs.cardears.BuildPlugins.kotlin)
+        classpath(org.rs.cardears.BuildPlugins.hilt)
     }
 }
 

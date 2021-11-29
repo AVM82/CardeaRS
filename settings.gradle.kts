@@ -7,4 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "CardeaRS"
-include("app")
+include("app", "core")

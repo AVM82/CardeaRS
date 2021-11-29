@@ -1,4 +1,4 @@
-package rs.school.rs.android2021task6
+package org.rs.cardears
 
 object Versions {
 
