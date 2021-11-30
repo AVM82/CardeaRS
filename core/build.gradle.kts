@@ -34,6 +34,9 @@ android {
 }
 
 dependencies {
+    implementation(Deps.Ktx.navigationFragment)
+    implementation(Deps.Ktx.navigationUi)
+
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.junitUi)
     androidTestImplementation(Deps.Test.espresso)

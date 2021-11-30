@@ -33,9 +33,23 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+    implementation(project(":core"))
+
+    implementation(Deps.Ktx.core)
+    implementation(Deps.Ktx.liveData)
+    implementation(Deps.Ktx.viewModel)
+    implementation(Deps.Ktx.fragment)
+
+    implementation(Deps.AndroidX.appcompat)
+    implementation(Deps.Google.material)
+    implementation(Deps.AndroidX.constraint)
 
     implementation(Deps.Google.hilt)
     implementation(Deps.AndroidX.hilt)

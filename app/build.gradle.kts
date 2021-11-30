@@ -40,6 +40,9 @@ android {
 
 dependencies {
 
+    implementation(project(":app:features:providersList"))
+    implementation(project(":core"))
+
     implementation(Deps.Ktx.core)
     implementation(Deps.Ktx.liveData)
     implementation(Deps.Ktx.viewModel)
@@ -49,11 +52,9 @@ dependencies {
     implementation(Deps.Google.material)
     implementation(Deps.AndroidX.constraint)
 
-    implementation(Deps.Ktx.navigationFragment)
-    implementation(Deps.Ktx.navigationUi)
-
     implementation(Deps.Google.hilt)
     implementation(Deps.AndroidX.hilt)
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     kapt(Deps.Kapt.dagger)
     kapt(Deps.Kapt.hilt)
 
