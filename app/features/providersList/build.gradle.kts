@@ -2,8 +2,8 @@ import org.rs.cardears.ConfigData
 import org.rs.cardears.Deps
 
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
+    id("com.android.library")
+    id( "kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
@@ -12,11 +12,8 @@ android {
     compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
-        applicationId = "org.rs.cardears"
         minSdk = ConfigData.minSdkVersion
         targetSdk = ConfigData.targetSdkVersion
-        versionCode = ConfigData.versionCode
-        versionName = ConfigData.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,18 +36,6 @@ android {
 }
 
 dependencies {
-
-    implementation(Deps.Ktx.core)
-    implementation(Deps.Ktx.liveData)
-    implementation(Deps.Ktx.viewModel)
-    implementation(Deps.Ktx.fragment)
-
-    implementation(Deps.AndroidX.appcompat)
-    implementation(Deps.Google.material)
-    implementation(Deps.AndroidX.constraint)
-
-    implementation(Deps.Ktx.navigationFragment)
-    implementation(Deps.Ktx.navigationUi)
 
     implementation(Deps.Google.hilt)
     implementation(Deps.AndroidX.hilt)

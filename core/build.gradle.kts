@@ -1,4 +1,5 @@
 import org.rs.cardears.ConfigData
+import org.rs.cardears.Deps
 
 plugins {
     id("com.android.library")
@@ -33,8 +34,8 @@ android {
 }
 
 dependencies {
-    testImplementation(org.rs.cardears.Deps.Test.junit)
-    androidTestImplementation(org.rs.cardears.Deps.Test.junitUi)
-    androidTestImplementation(org.rs.cardears.Deps.Test.espresso)
+    testImplementation(Deps.Test.junit)
+    androidTestImplementation(Deps.Test.junitUi)
+    androidTestImplementation(Deps.Test.espresso)
 
 }

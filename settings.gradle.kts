@@ -7,4 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "CardeaRS"
-include("app", "core")
+include("app", "core", "app:features:providersList")
