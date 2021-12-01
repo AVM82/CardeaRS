@@ -13,10 +13,14 @@
         <action
             android:id="@+id/action_providersFragment_to_providerDetailsFragment"
             app:destination="@id/providerDetailsFragment"
-            app:popUpTo="@id/providersFragment" />
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/providerDetailsFragment"
-        android:name="org.rs.cardears.providers.ui.ProviderDetailsFragment"
-        android:label="ProviderDetailsFragment" />
+        android:name="org.rs.cardears.providers.ui.providersDetails.ProviderDetailsFragment"
+        android:label="ProviderDetailsFragment"
+        tools:layout="@layout/provider_details_fragment"/>
 </navigation>

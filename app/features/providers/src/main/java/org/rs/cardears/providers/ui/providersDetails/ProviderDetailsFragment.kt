@@ -1,4 +1,4 @@
-package org.rs.cardears.providers.ui
+package org.rs.cardears.providers.ui.providersDetails
 
 import android.os.Bundle
 import android.view.View

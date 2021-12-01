@@ -16,3 +16,9 @@ local.properties
 
 # Project exclude paths
 /buildSrc/build/
+/.idea/.name
+/.idea/compiler.xml
+/.idea/gradle.xml
+/.idea/kotlinScripting.xml
+/.idea/misc.xml
+/.idea/vcs.xml
