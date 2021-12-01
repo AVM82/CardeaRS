@@ -3,4 +3,8 @@
     <dimen name="toolbar_title_text_size">20sp</dimen>
     <dimen name="marge_content">7dp</dimen>
     <dimen name="fading">9dp</dimen>
+    <dimen name="card_margin">3dp</dimen>
+    <dimen name="card_elevation">7dp</dimen>
+    <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="provider_image_size">100dp</dimen>
 </resources>
