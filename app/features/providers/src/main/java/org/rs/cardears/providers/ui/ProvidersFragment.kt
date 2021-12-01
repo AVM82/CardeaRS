@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
+import org.rs.cardears.providers.adapter.ProvidersAdapter
 import org.rs.cardears.providers.databinding.ProvidersFragmentBinding
 
 @AndroidEntryPoint
@@ -27,11 +28,9 @@ class ProvidersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        views {
-//            click.setOnClickListener {
-//                findNavController().navigate(R.id.action_providersFragment_to_providerDetailsFragment)
-//            }
-//        }
+        views {
+            providersList.adapter = ProvidersAdapter()
+        }
     }
 
     private fun <T> views(block: ProvidersFragmentBinding.() -> T) = binding.block()
