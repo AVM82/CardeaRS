@@ -40,7 +40,7 @@ android {
 
 dependencies {
 
-    implementation(project(":app:features:providersList"))
+    implementation(project(":app:features:providers"))
     implementation(project(":app:features:schedule"))
     implementation(project(":core"))
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/providersFragment"
-        android:name="org.rs.cardears.providerslist.ui.ProvidersFragment"
+        android:name="org.rs.cardears.providers.ui.ProvidersFragment"
         android:label="ProvidersFragment"
         tools:layout="@layout/providers_fragment">
         <action
@@ -17,6 +17,6 @@
     </fragment>
     <fragment
         android:id="@+id/providerDetailsFragment"
-        android:name="org.rs.cardears.providerslist.ui.ProviderDetailsFragment"
+        android:name="org.rs.cardears.providers.ui.ProviderDetailsFragment"
         android:label="ProviderDetailsFragment" />
 </navigation>

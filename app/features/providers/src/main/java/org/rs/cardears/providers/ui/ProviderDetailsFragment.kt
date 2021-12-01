@@ -1,4 +1,4 @@
-package org.rs.cardears.providerslist.ui
+package org.rs.cardears.providers.ui
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import org.rs.cardears.core.route.RouteActions
-import org.rs.cardears.providerslist.R
+import org.rs.cardears.providers.R
 import javax.inject.Inject
 
 @AndroidEntryPoint

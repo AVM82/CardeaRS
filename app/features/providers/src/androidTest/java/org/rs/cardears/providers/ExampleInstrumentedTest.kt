@@ -1,4 +1,4 @@
-package org.rs.cardears.providerslist
+package org.rs.cardears.providers
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

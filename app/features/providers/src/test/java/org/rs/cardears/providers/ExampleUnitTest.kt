@@ -1,4 +1,4 @@
-package org.rs.cardears.providerslist
+package org.rs.cardears.providers
 
 import org.junit.Test
 

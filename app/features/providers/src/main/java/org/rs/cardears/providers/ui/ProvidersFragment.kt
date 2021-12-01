@@ -1,4 +1,4 @@
-package org.rs.cardears.providerslist.ui
+package org.rs.cardears.providers.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.rs.cardears.core.route.RouteActions
-import org.rs.cardears.providerslist.R
-import org.rs.cardears.providerslist.databinding.ProvidersFragmentBinding
+import org.rs.cardears.providers.R
+import org.rs.cardears.providers.databinding.ProvidersFragmentBinding
 import javax.inject.Inject
 
 @AndroidEntryPoint
