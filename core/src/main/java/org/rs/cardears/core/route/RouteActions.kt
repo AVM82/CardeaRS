@@ -4,4 +4,5 @@ interface RouteActions {
 
     fun back()
     fun navigateToSchedule(dataToPass: String)
+    fun navigateToProviders(dataToPass: String)
 }

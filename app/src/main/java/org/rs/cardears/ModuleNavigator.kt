@@ -14,32 +14,29 @@ import javax.inject.Inject
 
 @ActivityScoped
 class ModuleNavigator @Inject constructor(
-    private val navController: NavController,
+    private val navController: NavController?,
 ) : RouteActions {
+
     override fun back() {
-        navController.popBackStack()
+        navController?.popBackStack()
     }
 
     override fun navigateToSchedule(dataToPass: String) {
-//        navController.navigate(NavigationRootDirections.actionSplashToMain(dataToPass))
-//        navController.navigate(R.id.action_to_schedule)
-        navController.navigate(R.id.nav_graph_schedule)
+        navController?.navigate(R.id.action_to_schedule)
     }
 
-//    override fun back() {
-//        navController.popBackStack()
-//    }
+    override fun navigateToProviders(dataToPass: String) {
+        navController?.navigate(R.id.action_to_providers)
+    }
 
     @Module
     @InstallIn(ActivityComponent::class)
     object NavControllerModule {
         @Provides
-        fun navController(activity: FragmentActivity): NavController {
-            return NavHostFragment.findNavController(
-                activity.supportFragmentManager.findFragmentById(
-                    R.id.container
-                )!!
-            )
+        fun navController(activity: FragmentActivity): NavController? {
+            return activity.supportFragmentManager.findFragmentById(R.id.container)?.let {
+                NavHostFragment.findNavController(it)
+            }
         }
     }
 
