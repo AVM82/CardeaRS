@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "CardeaRS"
 include("app", "core", "app:features:providersList")
+include(":app:features:schedule")

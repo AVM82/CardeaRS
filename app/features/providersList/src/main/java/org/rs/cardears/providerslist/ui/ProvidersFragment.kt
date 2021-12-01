@@ -5,8 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import org.rs.cardears.core.route.RouteActions
+import org.rs.cardears.providerslist.R
 import org.rs.cardears.providerslist.databinding.ProvidersFragmentBinding
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProvidersFragment : Fragment() {
@@ -29,7 +33,8 @@ class ProvidersFragment : Fragment() {
 
         views {
             click.setOnClickListener {
-
+                findNavController().navigate(R.id.action_providersFragment_to_providerDetailsFragment)
+//                routeActions.navigateToSchedule("")
             }
         }
     }

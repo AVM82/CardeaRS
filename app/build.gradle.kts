@@ -41,6 +41,7 @@ android {
 dependencies {
 
     implementation(project(":app:features:providersList"))
+    implementation(project(":app:features:schedule"))
     implementation(project(":core"))
 
     implementation(Deps.Ktx.core)
@@ -54,9 +55,11 @@ dependencies {
 
     implementation(Deps.Google.hilt)
     implementation(Deps.AndroidX.hilt)
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     kapt(Deps.Kapt.dagger)
     kapt(Deps.Kapt.hilt)
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
 
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.junitUi)

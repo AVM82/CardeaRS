@@ -9,5 +9,14 @@
         android:id="@+id/providersFragment"
         android:name="org.rs.cardears.providerslist.ui.ProvidersFragment"
         android:label="ProvidersFragment"
-        tools:layout="@layout/providers_fragment"/>
+        tools:layout="@layout/providers_fragment">
+        <action
+            android:id="@+id/action_providersFragment_to_providerDetailsFragment"
+            app:destination="@id/providerDetailsFragment"
+            app:popUpTo="@id/providersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/providerDetailsFragment"
+        android:name="org.rs.cardears.providerslist.ui.ProviderDetailsFragment"
+        android:label="ProviderDetailsFragment" />
 </navigation>
