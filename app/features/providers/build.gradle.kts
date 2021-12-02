@@ -51,6 +51,11 @@ dependencies {
     implementation(Deps.Google.material)
     implementation(Deps.AndroidX.constraint)
 
+    val lifecycleVersion = "2.4.0-alpha01"
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+
     implementation(Deps.Google.hilt)
     implementation(Deps.AndroidX.hilt)
     kapt(Deps.Kapt.dagger)

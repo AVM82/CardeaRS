@@ -1,12 +1,12 @@
 package org.rs.cardears.providers.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import org.rs.cardears.core.model.ProviderDTO
+import org.rs.cardears.core.model.Provider
 
-object DiffCallBack : DiffUtil.ItemCallback<ProviderDTO>() {
-    override fun areItemsTheSame(oldItem: ProviderDTO, newItem: ProviderDTO): Boolean =
+object DiffCallBack : DiffUtil.ItemCallback<Provider>() {
+    override fun areItemsTheSame(oldItem: Provider, newItem: Provider): Boolean =
         oldItem.uuid == newItem.uuid
 
-    override fun areContentsTheSame(oldItem: ProviderDTO, newItem: ProviderDTO): Boolean =
+    override fun areContentsTheSame(oldItem: Provider, newItem: Provider): Boolean =
         oldItem == newItem
 }
