@@ -1,4 +1,4 @@
-package org.rs.cardears
+package org.rs.cardears.di
 
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavController
@@ -9,7 +9,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.scopes.ActivityScoped
+import org.rs.cardears.R
+import org.rs.cardears.core.dataSource.ProvidersLocalDataSource
 import org.rs.cardears.core.route.RouteActions
+import org.rs.cardears.localstorage.repository.ProvidersLocalRepository
 import javax.inject.Inject
 
 @ActivityScoped
@@ -42,7 +45,7 @@ class ModuleNavigator @Inject constructor(
 
     @Module
     @InstallIn(ActivityComponent::class)
-    abstract class SplashModule {
+    abstract class RouteModule {
         @Binds
         abstract fun routeActions(moduleNavigator: ModuleNavigator): RouteActions
     }

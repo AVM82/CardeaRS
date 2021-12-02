@@ -35,6 +35,8 @@ android {
 
 dependencies {
 
+    implementation(Deps.coroutines)
+
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.junitUi)
     androidTestImplementation(Deps.Test.espresso)
