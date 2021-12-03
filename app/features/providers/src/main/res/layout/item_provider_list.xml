@@ -29,6 +29,7 @@
             android:id="@+id/provider_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/toolbar_title_text_size"
             app:layout_constraintBottom_toTopOf="@id/short_desc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/provider_image"
@@ -47,6 +48,7 @@
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/provider_image"
             app:layout_constraintTop_toBottomOf="@id/provider_title"
             tools:text="@tools:sample/lorem" />

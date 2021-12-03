@@ -4,6 +4,7 @@ plugins {
 }
 buildscript {
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
     }
@@ -44,4 +45,3 @@ subprojects {
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
-

@@ -38,13 +38,15 @@ class ProvidersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         views {
-//            providersList.adapter = ProvidersAdapter()
+            providersList.adapter = adapter
         }
 
         addRepeatingJob(Lifecycle.State.STARTED) {
-            viewModel.providersListFlow.collectLatest { it -> run {
-                adapter.submitList(it)
-            } }
+            viewModel.providersListFlow.collectLatest {
+                run {
+                    adapter.submitList(it)
+                }
+            }
         }
     }
 

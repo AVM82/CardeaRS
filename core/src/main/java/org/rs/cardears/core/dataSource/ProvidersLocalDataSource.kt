@@ -6,7 +6,7 @@ import java.util.*
 
 interface ProvidersLocalDataSource {
 
-    fun getAllProviders(): Flow<List<Provider>>
+    suspend fun getAllProviders(): Flow<List<Provider>>
 
     suspend fun deleteAllProviders()
 
