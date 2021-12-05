@@ -9,13 +9,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.rs.cardears.core.dataSource.ProvidersLocalDataSource
 import org.rs.cardears.core.model.Provider
-import java.util.*
+import org.rs.cardears.core.usecase.providers.GetProvidersUseCase
 import javax.inject.Inject
 
 @HiltViewModel
-class ProvidersViewModel @Inject constructor(var providersLocalDataSource: ProvidersLocalDataSource) :
+class ProvidersViewModel @Inject constructor(var getProvidersUseCase: GetProvidersUseCase) :
     ViewModel() {
 
     private val _providersListFlow = MutableStateFlow<List<Provider>>(emptyList())
@@ -26,13 +25,8 @@ class ProvidersViewModel @Inject constructor(var providersLocalDataSource: Provi
     }
 
     fun fetchProviders() {
-
-        viewModelScope.launch(Dispatchers.IO){
-            providersLocalDataSource.insertAll(listOf(Provider(UUID.randomUUID(), "222", "555", "999")))
-            providersLocalDataSource.getAllProviders().onEach { _providersListFlow.value = it }.launchIn(viewModelScope)
+        viewModelScope.launch(Dispatchers.IO) {
+            getProvidersUseCase().onEach { _providersListFlow.value = it }.launchIn(viewModelScope)
         }
-//        providersLocalDataSource.getAllProviders()
-
     }
-
 }
