@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -12,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import org.rs.cardears.providers.adapter.ProvidersAdapter
 import org.rs.cardears.providers.databinding.ProvidersFragmentBinding
+import org.rs.cardears.providers.state.ProvidersListState
 
 @AndroidEntryPoint
 class ProvidersFragment : Fragment() {
@@ -42,9 +44,20 @@ class ProvidersFragment : Fragment() {
         }
 
         addRepeatingJob(Lifecycle.State.STARTED) {
+            viewModel.fetchProviders()
             viewModel.providersListFlow.collectLatest {
-                run {
-                    adapter.submitList(it)
+                when (it) {
+                    is ProvidersListState.Success -> {
+                        adapter.submitList(it.providers)
+                        views {
+                            emptyList.isVisible = it.providers.isEmpty()
+                        }
+                    }
+                    is ProvidersListState.Failed -> {
+                        views {
+                            emptyList.isVisible = true
+                        }
+                    }
                 }
             }
         }
