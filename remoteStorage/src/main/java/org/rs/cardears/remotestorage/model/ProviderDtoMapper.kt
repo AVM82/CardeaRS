@@ -1,17 +1,17 @@
-package org.rs.cardears.localstorage.entity
+package org.rs.cardears.remotestorage.model
 
 import org.rs.cardears.core.model.Provider
 import java.util.*
 
-internal fun ProviderEntity.toProvider() = Provider(
+internal fun ProviderDto.toProvider() = Provider(
     uuid = UUID.fromString(this.uuid),
-    title = this.title,
+    title = this.title.orEmpty(),
     shortDesc = this.shortDesc,
     description = this.description,
     imageUrl = this.imageUrl
 )
 
-internal fun Provider.toProviderEntity() = ProviderEntity(
+internal fun Provider.toProviderDto() = ProviderDto(
     uuid = this.uuid.toString(),
     title = this.title,
     shortDesc = this.shortDesc,

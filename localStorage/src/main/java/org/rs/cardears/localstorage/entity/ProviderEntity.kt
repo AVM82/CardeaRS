@@ -18,7 +18,10 @@ data class ProviderEntity(
     val shortDesc: String?,
 
     @ColumnInfo(name = DESCRIPTION)
-    val description: String?
+    val description: String?,
+
+    @ColumnInfo(name = IMAGE_URL)
+    val imageUrl: String?
 
 ) {
 
@@ -29,6 +32,7 @@ data class ProviderEntity(
         const val TITLE = "title"
         const val SHORT_DESCRIPTION = "short_desc"
         const val DESCRIPTION = "description"
+        const val IMAGE_URL = "image_url"
     }
 
 }

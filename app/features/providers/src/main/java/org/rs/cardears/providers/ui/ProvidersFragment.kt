@@ -11,6 +11,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.addRepeatingJob
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import org.rs.cardears.core.Response
+import org.rs.cardears.core.model.Provider
 import org.rs.cardears.providers.adapter.ProvidersAdapter
 import org.rs.cardears.providers.databinding.ProvidersFragmentBinding
 import org.rs.cardears.providers.state.ProvidersListState
@@ -41,6 +43,18 @@ class ProvidersFragment : Fragment() {
 
         views {
             providersList.adapter = adapter
+        }
+
+        addRepeatingJob(Lifecycle.State.STARTED) {
+            viewModel.syncProvidersStateFlow.collectLatest {
+                when (it) {
+                    //todo  remove unchecked cast 07.12.2021
+                    is Response.Success<*> -> viewModel.updateLocalProviderStorage(it.data as List<Provider>)
+                    is Response.Error -> Unit
+                    is Response.Loading -> Unit
+                    Response.Idle -> Unit
+                }
+            }
         }
 
         addRepeatingJob(Lifecycle.State.STARTED) {

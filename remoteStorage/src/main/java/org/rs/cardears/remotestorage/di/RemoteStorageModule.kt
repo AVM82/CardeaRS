@@ -16,9 +16,11 @@ class RemoteStorageModule {
 
     @Provides
     @Singleton
-    fun provideFirestore() = Firebase.firestore
+    fun provideProvidersRemoteRepository(): ProvidersRemoteDataSource =
+        ProviderRemoteRepository(Firebase.firestore)
 
-    @Provides
-    fun provideProvidersRemoteRepository(impl: ProviderRemoteRepository) : ProvidersRemoteDataSource = impl
+    companion object {
+        const val PROVIDERS_COLLECTION_NAME = "providers"
+    }
 
 }

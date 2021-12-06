@@ -1,9 +1,10 @@
 package org.rs.cardears.core.dataSource
 
-import org.rs.cardears.core.model.Provider
+import kotlinx.coroutines.flow.Flow
+import org.rs.cardears.core.Response
 
 interface ProvidersRemoteDataSource {
 
-    suspend fun syncProviders(): List<Provider>
+    suspend fun syncProviders(): Flow<Response>
 
 }

@@ -1,13 +1,36 @@
 package org.rs.cardears.remotestorage.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.ktx.toObject
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.tasks.await
+import org.rs.cardears.core.Response
 import org.rs.cardears.core.dataSource.ProvidersRemoteDataSource
-import org.rs.cardears.core.model.Provider
+import org.rs.cardears.remotestorage.di.RemoteStorageModule
 import org.rs.cardears.remotestorage.model.ProviderDto
-import javax.inject.Inject
+import org.rs.cardears.remotestorage.model.toProvider
 
-class ProviderRemoteRepository @Inject constructor(db: FirebaseFirestore) : ProvidersRemoteDataSource {
-    override suspend fun syncProviders(): List<Provider> {
-        TODO("Not yet implemented")
+class ProviderRemoteRepository(private var db: FirebaseFirestore) :
+    ProvidersRemoteDataSource {
+    override suspend fun syncProviders(): Flow<Response> = flow {
+        try {
+            emit(Response.Loading(true))
+            val snapshot = db.collection(RemoteStorageModule.PROVIDERS_COLLECTION_NAME)
+                .get().await()
+            emit(
+                Response.Success(
+                    snapshot.toList().map {
+                        val o = it.toObject<ProviderDto>()
+                        o.toProvider()
+                    }.toList()
+                )
+            )
+        } catch (e: FirebaseFirestoreException) {
+            emit(Response.Error("Remote DB is unavailable"))
+        } finally {
+            emit(Response.Loading(false))
+        }
     }
 }
