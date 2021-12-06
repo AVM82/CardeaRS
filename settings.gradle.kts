@@ -14,3 +14,4 @@ include(
     "app:features:schedule",
     "localStorage"
 )
+include(":remoteStorage")

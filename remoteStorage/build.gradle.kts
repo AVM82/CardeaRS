@@ -2,22 +2,18 @@ import org.rs.cardears.ConfigData
 import org.rs.cardears.Deps
 
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
+    id("com.android.library")
+    id( "kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
-    id("com.google.gms.google-services")
 }
 
 android {
     compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
-        applicationId = "org.rs.cardears"
         minSdk = ConfigData.minSdkVersion
         targetSdk = ConfigData.targetSdkVersion
-        versionCode = ConfigData.versionCode
-        versionName = ConfigData.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -40,31 +36,19 @@ android {
 }
 
 dependencies {
-
-    implementation(project(":app:features:providers"))
-    implementation(project(":app:features:schedule"))
-    implementation(project(":localStorage"))
-    implementation(project(":remoteStorage"))
     implementation(project(":core"))
 
     implementation(Deps.Ktx.core)
-    implementation(Deps.Ktx.liveData)
-    implementation(Deps.Ktx.viewModel)
-    implementation(Deps.Ktx.fragment)
-
-    implementation(Deps.AndroidX.appcompat)
-    implementation(Deps.Google.material)
-    implementation(Deps.AndroidX.constraint)
 
     implementation(Deps.Google.hilt)
     implementation(Deps.AndroidX.hilt)
+    implementation("com.google.firebase:firebase-firestore-ktx:24.0.0")
+    implementation("com.google.firebase:firebase-database-ktx:20.0.3")
     kapt(Deps.Kapt.dagger)
     kapt(Deps.Kapt.hilt)
-
-    implementation(Deps.Ktx.navigationFragment)
-    implementation(Deps.Ktx.navigationUi)
 
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.junitUi)
     androidTestImplementation(Deps.Test.espresso)
+
 }
