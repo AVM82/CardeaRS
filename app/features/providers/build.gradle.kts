@@ -56,6 +56,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
 
+    // Glide
+    val glideVersion = "4.12.0"
+    implementation("com.github.bumptech.glide:glide:$glideVersion")
+
     implementation(Deps.Google.hilt)
     implementation(Deps.AndroidX.hilt)
     kapt(Deps.Kapt.dagger)

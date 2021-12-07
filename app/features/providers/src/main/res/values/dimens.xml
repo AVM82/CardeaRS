@@ -6,6 +6,7 @@
     <dimen name="card_margin">3dp</dimen>
     <dimen name="card_elevation">7dp</dimen>
     <dimen name="card_corner_radius">5dp</dimen>
-    <dimen name="provider_image_size">100dp</dimen>
+    <dimen name="provider_image_size">77dp</dimen>
     <dimen name="empty_img_size">48dp</dimen>
+    <dimen name="icon_size_48">48dp</dimen>
 </resources>

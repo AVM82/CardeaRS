@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.addRepeatingJob
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import org.rs.cardears.core.Response
@@ -49,8 +50,8 @@ class ProvidersFragment : Fragment() {
             viewModel.syncProvidersStateFlow.collectLatest {
                 when (it) {
                     //todo  remove unchecked cast 07.12.2021
-                    is Response.Success<*> -> viewModel.updateLocalProviderStorage(it.data as List<Provider>)
-                    is Response.Error -> Unit
+                    is Response.Success<*> -> onSuccessSyncProviders(it)
+                    is Response.Error -> onErrorSyncProviders()
                     is Response.Loading -> views { progress.isVisible = it.loading }
                     Response.Idle -> Unit
                 }
@@ -75,6 +76,22 @@ class ProvidersFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun onErrorSyncProviders() {
+        views {
+            Snackbar.make(
+                container,
+                "No Internet Connection",
+                Snackbar.LENGTH_LONG
+            ).show()
+            noInternet.visibility = View.VISIBLE
+        }
+    }
+
+    private fun onSuccessSyncProviders(it: Response.Success<*>) {
+        viewModel.updateLocalProviderStorage(it.data as List<Provider>)
+        views { noInternet.visibility = View.GONE }
     }
 
     private fun <T> views(block: ProvidersFragmentBinding.() -> T) = binding.block()

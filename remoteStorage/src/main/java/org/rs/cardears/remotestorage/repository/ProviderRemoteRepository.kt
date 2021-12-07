@@ -20,14 +20,18 @@ class ProviderRemoteRepository(private var db: FirebaseFirestore) :
             emit(Response.Loading(true))
             val snapshot = db.collection(RemoteStorageModule.PROVIDERS_COLLECTION_NAME)
                 .get().await()
-            emit(
-                Response.Success(
-                    snapshot.toList().map {
-                        val o = it.toObject<ProviderDto>()
-                        o.toProvider()
-                    }.toList()
+            if (!snapshot.metadata.isFromCache) {
+                emit(
+                    Response.Success(
+                        snapshot.toList().map {
+                            it.toObject<ProviderDto>().toProvider()
+                        }.toList()
+                    )
                 )
-            )
+            } else {
+                emit(Response.Error("Remote DB is unavailable"))
+            }
+
         } catch (e: FirebaseFirestoreException) {
             emit(Response.Error("Remote DB is unavailable"))
         } finally {
