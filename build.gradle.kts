@@ -14,6 +14,7 @@ buildscript {
         classpath(org.rs.cardears.BuildPlugins.hilt)
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0")
         classpath("com.google.gms:google-services:4.3.10")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5")
     }
 }
 

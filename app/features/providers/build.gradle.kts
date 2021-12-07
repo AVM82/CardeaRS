@@ -6,6 +6,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -67,6 +68,7 @@ dependencies {
 
     implementation(Deps.Ktx.navigationFragment)
     implementation(Deps.Ktx.navigationUi)
+
 
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.junitUi)

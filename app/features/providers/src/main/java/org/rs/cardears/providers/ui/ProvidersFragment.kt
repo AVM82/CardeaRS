@@ -19,6 +19,7 @@ import org.rs.cardears.providers.R
 import org.rs.cardears.providers.adapter.ProvidersAdapter
 import org.rs.cardears.providers.databinding.ProvidersFragmentBinding
 import org.rs.cardears.providers.state.ProvidersListState
+import org.rs.cardears.providers.ui.providersDetails.ProviderDetailsFragment
 
 @AndroidEntryPoint
 class ProvidersFragment : Fragment() {
@@ -95,6 +96,10 @@ class ProvidersFragment : Fragment() {
 
 
     private fun renderDetailFragment(provider: Provider) {
+//        val action = .confirmationAction(amount)
+//        v.findNavController().navigate(action)
+        val uuid = provider.uuid.toString()
+        ProvidersFragmentDirections.actionProvidersFragmentToProviderDetailsFragment()
         val navController = Navigation.findNavController(requireActivity(), R.id.container)
         navController.navigate(R.id.action_providersFragment_to_providerDetailsFragment)
     }

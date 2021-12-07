@@ -16,11 +16,12 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+        </action>
     </fragment>
     <fragment
         android:id="@+id/providerDetailsFragment"
         android:name="org.rs.cardears.providers.ui.providersDetails.ProviderDetailsFragment"
         android:label="ProviderDetailsFragment"
-        tools:layout="@layout/provider_details_fragment"/>
+        tools:layout="@layout/provider_details_fragment" />
 </navigation>
