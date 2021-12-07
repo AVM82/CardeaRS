@@ -12,11 +12,6 @@ class ProviderViewHolder(private val binding: ItemProviderListBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Provider) {
-        itemView.run {
-//            setOnClickListener { listener.onClickListener(item) }
-//            setOnLongClickListener { listener.onLongClickListener(item) }
-        }
-
         views {
             providerTitle.text = item.title
             shortDesc.text = item.shortDesc
@@ -26,7 +21,6 @@ class ProviderViewHolder(private val binding: ItemProviderListBinding) :
                 .into(providerImage)
         }
     }
-
 
     companion object {
         fun from(parent: ViewGroup) = ItemProviderListBinding.inflate(

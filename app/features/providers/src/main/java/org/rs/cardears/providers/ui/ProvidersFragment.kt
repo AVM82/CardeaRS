@@ -9,11 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.addRepeatingJob
+import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import org.rs.cardears.core.Response
 import org.rs.cardears.core.model.Provider
+import org.rs.cardears.providers.R
 import org.rs.cardears.providers.adapter.ProvidersAdapter
 import org.rs.cardears.providers.databinding.ProvidersFragmentBinding
 import org.rs.cardears.providers.state.ProvidersListState
@@ -24,8 +26,9 @@ class ProvidersFragment : Fragment() {
     private val viewModel: ProvidersViewModel by viewModels()
 
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
-        ProvidersAdapter()
+        ProvidersAdapter(ProvidersAdapter.OnClickListener { renderDetailFragment(it) })
     }
+
     private val binding get() = requireNotNull(_binding)
 
     private var _binding: ProvidersFragmentBinding? = null
@@ -46,10 +49,9 @@ class ProvidersFragment : Fragment() {
             providersList.adapter = adapter
         }
 
-        addRepeatingJob(Lifecycle.State.STARTED) {
+        addRepeatingJob(Lifecycle.State.CREATED) {
             viewModel.syncProvidersStateFlow.collectLatest {
                 when (it) {
-                    //todo  remove unchecked cast 07.12.2021
                     is Response.Success<*> -> onSuccessSyncProviders(it)
                     is Response.Error -> onErrorSyncProviders()
                     is Response.Loading -> views { progress.isVisible = it.loading }
@@ -59,29 +61,26 @@ class ProvidersFragment : Fragment() {
         }
 
         addRepeatingJob(Lifecycle.State.STARTED) {
-            viewModel.fetchProviders()
             viewModel.providersListFlow.collectLatest {
                 when (it) {
-                    is ProvidersListState.Success -> {
-                        adapter.submitList(it.providers)
-                        views {
-                            emptyList.isVisible = it.providers.isEmpty()
-                        }
-                    }
-                    is ProvidersListState.Failed -> {
-                        views {
-                            emptyList.isVisible = true
-                        }
-                    }
+                    is ProvidersListState.Success -> onSuccessFetchProviders(it)
+                    is ProvidersListState.Failed -> onFailedFetchProviders()
                 }
             }
         }
     }
 
+    private fun onFailedFetchProviders() = views { emptyList.isVisible = true }
+
+    private fun onSuccessFetchProviders(it: ProvidersListState.Success) {
+        adapter.submitList(it.providers)
+        views { emptyList.isVisible = it.providers.isEmpty() }
+    }
+
     private fun onErrorSyncProviders() {
         views {
             Snackbar.make(
-                container,
+                providersContainer,
                 "No Internet Connection",
                 Snackbar.LENGTH_LONG
             ).show()
@@ -92,6 +91,12 @@ class ProvidersFragment : Fragment() {
     private fun onSuccessSyncProviders(it: Response.Success<*>) {
         viewModel.updateLocalProviderStorage(it.data as List<Provider>)
         views { noInternet.visibility = View.GONE }
+    }
+
+
+    private fun renderDetailFragment(provider: Provider) {
+        val navController = Navigation.findNavController(requireActivity(), R.id.container)
+        navController.navigate(R.id.action_providersFragment_to_providerDetailsFragment)
     }
 
     private fun <T> views(block: ProvidersFragmentBinding.() -> T) = binding.block()

@@ -35,7 +35,7 @@ class ProvidersViewModel @Inject constructor(
     private val _syncProvidersStateFlow = MutableStateFlow<Response>(Response.Idle)
     val syncProvidersStateFlow: Flow<Response> = _syncProvidersStateFlow
 
-    fun fetchProviders() {
+    init {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 getProvidersUseCase().onEach {
@@ -48,7 +48,7 @@ class ProvidersViewModel @Inject constructor(
         }
     }
 
-    suspend fun syncProviders() = syncProvidersUseCase.invoke().onEach {
+    private suspend fun syncProviders() = syncProvidersUseCase.invoke().onEach {
         _syncProvidersStateFlow.value = it
     }.launchIn(viewModelScope)
 
@@ -59,6 +59,5 @@ class ProvidersViewModel @Inject constructor(
                 saveProvidersUseCase(newData)
             }
         }
-
     }
 }
