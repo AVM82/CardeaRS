@@ -11,17 +11,27 @@
         android:label="ProvidersFragment"
         tools:layout="@layout/providers_fragment">
         <action
-            android:id="@+id/action_providersFragment_to_providerDetailsFragment"
+            android:id="@+id/providersFragmentAction"
             app:destination="@id/providerDetailsFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="uuid"
+                app:argType="string"
+                android:defaultValue=""
+                app:nullable="false" />
         </action>
+
     </fragment>
     <fragment
         android:id="@+id/providerDetailsFragment"
         android:name="org.rs.cardears.providers.ui.providersDetails.ProviderDetailsFragment"
         android:label="ProviderDetailsFragment"
-        tools:layout="@layout/provider_details_fragment" />
+        tools:layout="@layout/provider_details_fragment">
+        <argument
+            android:name="uuid"
+            app:argType="string" />
+    </fragment>
 </navigation>

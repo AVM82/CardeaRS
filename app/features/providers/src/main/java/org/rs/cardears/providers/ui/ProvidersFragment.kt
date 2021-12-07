@@ -9,17 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.addRepeatingJob
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import org.rs.cardears.core.Response
 import org.rs.cardears.core.model.Provider
-import org.rs.cardears.providers.R
 import org.rs.cardears.providers.adapter.ProvidersAdapter
 import org.rs.cardears.providers.databinding.ProvidersFragmentBinding
 import org.rs.cardears.providers.state.ProvidersListState
-import org.rs.cardears.providers.ui.providersDetails.ProviderDetailsFragment
 
 @AndroidEntryPoint
 class ProvidersFragment : Fragment() {
@@ -96,12 +94,9 @@ class ProvidersFragment : Fragment() {
 
 
     private fun renderDetailFragment(provider: Provider) {
-//        val action = .confirmationAction(amount)
-//        v.findNavController().navigate(action)
-        val uuid = provider.uuid.toString()
-        ProvidersFragmentDirections.actionProvidersFragmentToProviderDetailsFragment()
-        val navController = Navigation.findNavController(requireActivity(), R.id.container)
-        navController.navigate(R.id.action_providersFragment_to_providerDetailsFragment)
+
+        val action = ProvidersFragmentDirections.providersFragmentAction(provider.uuid.toString())
+        findNavController().navigate(action)
     }
 
     private fun <T> views(block: ProvidersFragmentBinding.() -> T) = binding.block()
