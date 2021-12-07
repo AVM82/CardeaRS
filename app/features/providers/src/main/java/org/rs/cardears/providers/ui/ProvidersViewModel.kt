@@ -38,17 +38,6 @@ class ProvidersViewModel @Inject constructor(
     fun fetchProviders() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                saveProvidersUseCase.invoke(
-                    listOf(
-                        Provider(
-                            UUID.randomUUID(),
-                            "Title",
-                            "ShortDesc",
-                            "",
-                            ""
-                        )
-                    )
-                )
                 getProvidersUseCase().onEach {
                     _providersListFlow.value = ProvidersListState.Success(it)
                 }.launchIn(viewModelScope)
@@ -64,7 +53,6 @@ class ProvidersViewModel @Inject constructor(
     }.launchIn(viewModelScope)
 
     fun updateLocalProviderStorage(newData: List<Provider>) {
-        Log.d("NEW", newData.toString())
         viewModelScope.launch(Dispatchers.IO) {
             deleteLocalProvidersUseCase()
             if (newData.isNotEmpty()) {
@@ -73,13 +61,4 @@ class ProvidersViewModel @Inject constructor(
         }
 
     }
-
-//        when(val providerFbResponse = syncProvidersUseCase()) {
-//            is Response.Success -> {
-//                deleteLocalProvidersUseCase()
-//                saveProvidersUseCase(providerFbResponse)
-//            }
-//            is Error -> Log.d()
-//        }
-
 }

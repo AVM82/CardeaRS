@@ -3,6 +3,7 @@ package org.rs.cardears.remotestorage.repository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.toObject
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
@@ -30,6 +31,7 @@ class ProviderRemoteRepository(private var db: FirebaseFirestore) :
         } catch (e: FirebaseFirestoreException) {
             emit(Response.Error("Remote DB is unavailable"))
         } finally {
+            delay(500)
             emit(Response.Loading(false))
         }
     }

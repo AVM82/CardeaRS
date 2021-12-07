@@ -51,7 +51,7 @@ class ProvidersFragment : Fragment() {
                     //todo  remove unchecked cast 07.12.2021
                     is Response.Success<*> -> viewModel.updateLocalProviderStorage(it.data as List<Provider>)
                     is Response.Error -> Unit
-                    is Response.Loading -> Unit
+                    is Response.Loading -> views { progress.isVisible = it.loading }
                     Response.Idle -> Unit
                 }
             }
