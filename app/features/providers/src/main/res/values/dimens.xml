@@ -9,4 +9,5 @@
     <dimen name="provider_image_size">77dp</dimen>
     <dimen name="empty_img_size">48dp</dimen>
     <dimen name="icon_size_48">48dp</dimen>
+    <dimen name="icon_size_200">200dp</dimen>
 </resources>

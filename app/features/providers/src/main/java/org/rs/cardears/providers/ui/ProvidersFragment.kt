@@ -24,13 +24,10 @@ import org.rs.cardears.providers.state.ProvidersListState
 class ProvidersFragment : Fragment() {
 
     private val viewModel: ProvidersViewModel by viewModels()
-
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
         ProvidersAdapter(ProvidersAdapter.OnClickListener { renderDetailFragment(it) })
     }
-
     private val binding get() = requireNotNull(_binding)
-
     private var _binding: ProvidersFragmentBinding? = null
 
     override fun onCreateView(
