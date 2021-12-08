@@ -7,10 +7,10 @@
 
     <fragment
         android:id="@+id/schedule_fragment"
-        android:name="org.rs.schedule.ScheduleFragment"
+        android:name="org.rs.schedule.AppointmentFragment"
         android:label="schedule_fragment"
         app:defaultNavHost="true"
-        tools:layout="@layout/schedule_fragment">
+        tools:layout="@layout/appointment_fragment">
         <argument
             android:name="someArgument"
             app:argType="string" />

@@ -8,6 +8,7 @@
     <dimen name="card_corner_radius">5dp</dimen>
     <dimen name="provider_image_size">77dp</dimen>
     <dimen name="empty_img_size">48dp</dimen>
-    <dimen name="icon_size_48">48dp</dimen>
+    <dimen name="icon_size_24">24dp</dimen>
     <dimen name="icon_size_200">200dp</dimen>
+    <dimen name="current_date_text_size">21sp</dimen>
 </resources>

@@ -26,8 +26,8 @@
 
         <ImageView
             android:id="@+id/no_internet"
-            android:layout_width="@dimen/icon_size_48"
-            android:layout_height="@dimen/icon_size_48"
+            android:layout_width="@dimen/icon_size_24"
+            android:layout_height="@dimen/icon_size_24"
             android:layout_gravity="end"
             android:src="@drawable/ic_baseline_cloud_off_24"
             android:visibility="gone"
@@ -54,7 +54,7 @@
         android:fadingEdgeLength="@dimen/fading"
         android:orientation="vertical"
         android:requiresFadingEdge="vertical"
-        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

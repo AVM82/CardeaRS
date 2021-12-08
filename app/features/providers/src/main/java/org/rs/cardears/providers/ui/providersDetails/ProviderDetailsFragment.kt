@@ -35,7 +35,7 @@ class ProviderDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         views {
-            providerDetailsBackButton.setOnClickListener{
+            providerDetailsBackButton.setOnClickListener {
                 routeActions.back()
             }
             providerTitle.text = args.title
@@ -47,7 +47,7 @@ class ProviderDetailsFragment : Fragment() {
                     getDefaultRequestOptions()
                 ).into(providerImage)
             toScheduleButton.setOnClickListener {
-                routeActions.navigateToSchedule("")
+                routeActions.navigateToSchedule(args.uuid)
             }
         }
     }

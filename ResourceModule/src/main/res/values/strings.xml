@@ -7,4 +7,5 @@
     <string name="no_desc_msg">No description</string>
     <string name="make_an_appointment">Make an appointment</string>
     <string name="back_to_list_of_providers">Back to list of providers</string>
+    <string name="appointment_tool_bar_title">Appointment</string>
 </resources>
