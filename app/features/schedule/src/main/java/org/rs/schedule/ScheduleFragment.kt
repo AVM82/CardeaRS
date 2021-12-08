@@ -24,10 +24,10 @@ class ScheduleFragment : Fragment(R.layout.schedule_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val button = requireActivity().findViewById<Button>(R.id.btn)
-        button.setOnClickListener {
-            routeActions.back()
-        }
+//        val button = requireActivity().findViewById<Button>(R.id.btn)
+//        button.setOnClickListener {
+//            routeActions.back()
+//        }
 
     }
 

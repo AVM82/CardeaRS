@@ -15,3 +15,4 @@ include(
     "localStorage"
 )
 include(":remoteStorage")
+include(":ResourceModule")

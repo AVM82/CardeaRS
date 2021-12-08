@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":ResourceModule"))
 
     implementation(Deps.Ktx.core)
     implementation(Deps.Ktx.liveData)
