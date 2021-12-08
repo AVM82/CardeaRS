@@ -6,6 +6,6 @@ import org.rs.cardears.providers.R
 
 fun getDefaultRequestOptions() = RequestOptions()
     .placeholder(R.drawable.loading_animation)
-    .error(R.drawable.ic_baseline_broken_image_24)
-    .fallback(R.drawable.ic_baseline_photo_camera_24)
+    .error(R.drawable.ic_account_box_24)
+    .fallback(R.drawable.ic_account_box_24)
     .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)

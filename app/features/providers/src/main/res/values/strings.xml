@@ -4,4 +4,7 @@
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="load_state_retry_button_text">RETRY</string>
     <string name="providers_image_description">provider\'s image</string>
+    <string name="no_desc_msg">No description</string>
+    <string name="make_an_appointment">Make an appointment</string>
+    <string name="back_to_list_of_providers">Back to list of providers</string>
 </resources>

@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import org.rs.cardears.core.Response
 import org.rs.cardears.core.model.Provider
+import org.rs.cardears.providers.R
 import org.rs.cardears.providers.adapter.ProvidersAdapter
 import org.rs.cardears.providers.databinding.ProvidersFragmentBinding
 import org.rs.cardears.providers.state.ProvidersListState
@@ -95,7 +96,12 @@ class ProvidersFragment : Fragment() {
 
     private fun renderDetailFragment(provider: Provider) {
 
-        val action = ProvidersFragmentDirections.providersFragmentAction(provider.uuid.toString())
+        val action = ProvidersFragmentDirections.providersFragmentAction(
+            uuid = provider.uuid.toString(),
+            title = provider.title,
+            desc = provider.description ?: getString(R.string.no_desc_msg),
+            imageUrl = provider.imageUrl ?: ""
+        )
         findNavController().navigate(action)
     }
 

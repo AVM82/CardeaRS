@@ -22,6 +22,21 @@
                 app:argType="string"
                 android:defaultValue=""
                 app:nullable="false" />
+            <argument
+                android:name="title"
+                app:argType="string"
+                android:defaultValue=""
+                app:nullable="false" />
+            <argument
+                android:name="desc"
+                app:argType="string"
+                android:defaultValue=""
+                app:nullable="false" />
+            <argument
+                android:name="imageUrl"
+                app:argType="string"
+                android:defaultValue=""
+                app:nullable="false" />
         </action>
 
     </fragment>
@@ -32,6 +47,23 @@
         tools:layout="@layout/provider_details_fragment">
         <argument
             android:name="uuid"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="false" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="false" />
+        <argument
+            android:name="desc"
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="false" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="false" />
     </fragment>
 </navigation>
