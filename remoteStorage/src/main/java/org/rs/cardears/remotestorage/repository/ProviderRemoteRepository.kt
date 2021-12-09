@@ -47,6 +47,7 @@ class ProviderRemoteRepository(private var db: FirebaseFirestore) :
 
     override suspend fun getScheduleByDate(uuid: String, date: String, callback: (List<Appointment>) -> Unit) {
         var appointmentList = emptyList<Appointment>()
+
         db.collection(RemoteStorageModule.APPOINTMENTS_COLLECTION_NAME)
             .whereEqualTo(RemoteStorageModule.APPOINTMENTS_UUID_FIELD, uuid)
             .whereEqualTo(RemoteStorageModule.APPOINTMENT_DATE_FIELD, date)

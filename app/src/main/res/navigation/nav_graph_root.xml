@@ -15,7 +15,7 @@
         app:popUpToInclusive="false">
 
         <argument
-            android:name="someArgument"
+            android:name="uuid"
             app:argType="string" />
     </action>
 

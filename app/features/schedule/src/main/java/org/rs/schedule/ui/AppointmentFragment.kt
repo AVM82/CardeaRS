@@ -1,5 +1,6 @@
 package org.rs.schedule.ui
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
@@ -14,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.addRepeatingJob
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -21,6 +23,7 @@ import org.rs.cardears.core.route.RouteActions
 import org.rs.schedule.R
 import org.rs.schedule.adapter.AppointmentAdapter
 import org.rs.schedule.databinding.AppointmentFragmentBinding
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -30,10 +33,12 @@ class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
     @Inject
     lateinit var routeActions: RouteActions
 
-    private val binding get() = requireNotNull(_binding)
-    private var _binding: AppointmentFragmentBinding? = null
-
+    private val args by navArgs<AppointmentFragmentArgs>()
     private val viewModel: AppointmentFragmentViewModal by viewModels()
+
+    private val binding get() = requireNotNull(_binding)
+
+    private var _binding: AppointmentFragmentBinding? = null
 
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
         AppointmentAdapter()
@@ -41,7 +46,7 @@ class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
 
     private val date: Calendar = Calendar.getInstance()
 
-    private var changeDateListener = OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+    private var changeDateListener = OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
         date.set(Calendar.YEAR, year)
         date.set(Calendar.MONTH, monthOfYear)
         date.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -59,14 +64,14 @@ class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.getScheduleByDate(uuid = args.uuid, date = getDateFormatString())
+Log.d("TAG", args.uuid)
         views {
             timeList.adapter = adapter
         }
 
         addRepeatingJob(Lifecycle.State.CREATED) {
             viewModel.appointmentListFlow.onEach {
-                Log.d("TAG", it.toString())
                 adapter.submitList(it)
                 views { emptyList.isVisible = it.isEmpty() }
             }.launchIn(lifecycleScope)
@@ -97,8 +102,18 @@ class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
                 DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR
             )
         }
+        viewModel.getScheduleByDate(
+            args.uuid,
+            getDateFormatString()
+        )
     }
 
+    @SuppressLint("SimpleDateFormat")
+    private fun getDateFormatString(): String {
+        val format = SimpleDateFormat("dd-MM-yyyy")
+        return format.format(date.time)
+//        "${date.get(Calendar.DAY_OF_MONTH)}-${date.get(Calendar.MONTH)}-${date.get(Calendar.YEAR)}"
+    }
     private fun <T> views(block: AppointmentFragmentBinding.() -> T) = binding.block()
 
 }

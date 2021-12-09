@@ -50,14 +50,6 @@ class ProvidersFragment : Fragment() {
         }
 
         addRepeatingJob(Lifecycle.State.CREATED) {
-//            viewModel.syncProvidersStateFlow.collectLatest {
-//                when (it) {
-//                    is Response.Success<*> -> onSuccessSyncProviders(it)
-//                    is Response.Error -> onErrorSyncProviders()
-//                    is Response.Loading -> views { progress.isVisible = it.loading }
-//                    Response.Idle -> Unit
-//                }
-//            }
             viewModel.syncProvidersStateFlow.onEach {
                 when (it) {
                     is Response.Success<*> -> onSuccessSyncProviders(it)

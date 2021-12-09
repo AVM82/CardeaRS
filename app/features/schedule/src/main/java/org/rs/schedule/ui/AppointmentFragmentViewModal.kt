@@ -15,10 +15,6 @@ class AppointmentFragmentViewModal @Inject constructor(
     private val getScheduleByDateUseCase: GetScheduleByDateUseCase
 ) : ViewModel() {
 
-    init {
-        getScheduleByDate("160b0486-8804-4c0f-9b01-bbb3e2098534", "09-12-2021")
-    }
-
     private val _appointmentListFlow = MutableStateFlow<List<Appointment>>(emptyList())
 
     var appointmentListFlow: Flow<List<Appointment>> = _appointmentListFlow
