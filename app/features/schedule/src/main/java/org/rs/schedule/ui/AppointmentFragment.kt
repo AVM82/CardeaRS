@@ -19,6 +19,7 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import org.rs.cardears.core.model.Appointment
 import org.rs.cardears.core.route.RouteActions
 import org.rs.schedule.R
 import org.rs.schedule.adapter.AppointmentAdapter
@@ -41,7 +42,12 @@ class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
     private var _binding: AppointmentFragmentBinding? = null
 
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
-        AppointmentAdapter()
+        AppointmentAdapter(AppointmentAdapter.OnClickListener { checkedAppointment(it) })
+    }
+
+    private fun checkedAppointment(appointment: Appointment) {
+
+        TODO("Not yet implemented")
     }
 
     private val date: Calendar = Calendar.getInstance()
