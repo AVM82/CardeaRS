@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import org.rs.cardears.core.Response
 import org.rs.cardears.core.dataSource.ProvidersRemoteDataSource
+import org.rs.cardears.core.model.Appointment
+import org.rs.cardears.core.model.Customer
 import org.rs.cardears.remotestorage.di.RemoteStorageModule
 import org.rs.cardears.remotestorage.model.ProviderDto
 import org.rs.cardears.remotestorage.model.toProvider
@@ -39,4 +41,20 @@ class ProviderRemoteRepository(private var db: FirebaseFirestore) :
             emit(Response.Loading(false))
         }
     }
+
+    override suspend fun getScheduleByDate(date: String) =
+        listOf(
+            Appointment(
+                time = "09:00",
+                null
+            ),
+            Appointment(
+                time = "10:00",
+                Customer(name = "Iavn", phone = "0503333333")
+            ),
+            Appointment(
+                time = "11:00",
+                null
+            )
+        )
 }

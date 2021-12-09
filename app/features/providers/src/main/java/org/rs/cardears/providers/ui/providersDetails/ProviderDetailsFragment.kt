@@ -11,6 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.rs.cardears.core.route.RouteActions
 import org.rs.cardears.providers.databinding.ProviderDetailsFragmentBinding
 import org.rs.cardears.providers.helpers.getDefaultRequestOptions
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -47,7 +48,53 @@ class ProviderDetailsFragment : Fragment() {
                     getDefaultRequestOptions()
                 ).into(providerImage)
             toScheduleButton.setOnClickListener {
+//                val db = Firebase.firestore
+//                db.collection("appointments").document().set(
+//                    Schedule(
+//                        uuid = "160b0486-8804-4c0f-9b01-bbb3e2098534",
+//                        date = "09-12-2021",
+//                        appointment = listOf(
+//                            Appointment(
+//                                time = "08:30",
+//                                Customer(name = "name", phone = "0503333333")
+//                            ),
+//                            Appointment(time = "9:00", null),
+//                            Appointment(time = "10:00", null)
+//                        )
+//                    )
+//                )
+//                db.collection("appointments").document().set(
+//                    Schedule(
+//                        uuid = "160b0486-8804-4c0f-9b01-bbb3e2098534",
+//                        date = "10-12-2021",
+//                        appointment = listOf(
+//                            Appointment(
+//                                time = "08:30",
+//                                Customer(name = "name2", phone = "0507777777")
+//                            ),
+//                            Appointment(time = "9:00", null),
+//                            Appointment(time = "10:00", null)
+//                        )
+//                    )
+//                )
+
+
+//                db
+//                    .collection("appointments")
+//                    .whereEqualTo("uuid", "160b0486-8804-4c0f-9b01-bbb3e2098534")
+//                    .whereEqualTo("date", "09-12-2021")
+//                    .get()
+//                    .addOnSuccessListener { documents ->
+//                        for (document in documents) {
+//                            Log.d("TAG", "${document.id} => ${document.data}")
+//                        }
+////                        Log.d("TAG", "${documents.id} => ${documents.data}")
+//                    }
+//                    .addOnFailureListener { exception ->
+//                        Log.d("TAG", "get failed with ", exception)
+//                    }
                 routeActions.navigateToSchedule(args.uuid)
+//
             }
         }
     }

@@ -9,10 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.addRepeatingJob
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.rs.cardears.core.Response
 import org.rs.cardears.core.model.Provider
 import org.rs.cardears.providers.R
@@ -47,23 +50,31 @@ class ProvidersFragment : Fragment() {
         }
 
         addRepeatingJob(Lifecycle.State.CREATED) {
-            viewModel.syncProvidersStateFlow.collectLatest {
+//            viewModel.syncProvidersStateFlow.collectLatest {
+//                when (it) {
+//                    is Response.Success<*> -> onSuccessSyncProviders(it)
+//                    is Response.Error -> onErrorSyncProviders()
+//                    is Response.Loading -> views { progress.isVisible = it.loading }
+//                    Response.Idle -> Unit
+//                }
+//            }
+            viewModel.syncProvidersStateFlow.onEach {
                 when (it) {
                     is Response.Success<*> -> onSuccessSyncProviders(it)
                     is Response.Error -> onErrorSyncProviders()
                     is Response.Loading -> views { progress.isVisible = it.loading }
                     Response.Idle -> Unit
                 }
-            }
+            }.launchIn(lifecycleScope)
         }
 
         addRepeatingJob(Lifecycle.State.STARTED) {
-            viewModel.providersListFlow.collectLatest {
+            viewModel.providersListFlow.onEach {
                 when (it) {
                     is ProvidersListState.Success -> onSuccessFetchProviders(it)
                     is ProvidersListState.Failed -> onFailedFetchProviders()
                 }
-            }
+            }.launchIn(lifecycleScope)
         }
     }
 

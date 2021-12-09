@@ -43,6 +43,11 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":ResourceModule"))
 
+    val lifecycleVersion = "2.4.0-alpha01"
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+
     implementation(Deps.Ktx.core)
     implementation(Deps.Ktx.liveData)
     implementation(Deps.Ktx.viewModel)

@@ -4,11 +4,21 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
 import android.text.format.DateUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.addRepeatingJob
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import org.rs.cardears.core.Response
 import org.rs.cardears.core.route.RouteActions
 import org.rs.schedule.databinding.AppointmentFragmentBinding
 import java.util.*
@@ -22,6 +32,8 @@ class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
 
     private val binding get() = requireNotNull(_binding)
     private var _binding: AppointmentFragmentBinding? = null
+
+    private val viewModel: AppointmentFragmentViewModal by viewModels()
 
     private val date: Calendar = Calendar.getInstance()
 
@@ -43,6 +55,12 @@ class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        addRepeatingJob(Lifecycle.State.CREATED) {
+            viewModel.appointmentListFlow.onEach {
+                Log.d("TAG", it.toString())
+            }.launchIn(lifecycleScope)
+        }
 
         views {
             toolBarTitle.text = getString(R.string.appointment_tool_bar_title)
