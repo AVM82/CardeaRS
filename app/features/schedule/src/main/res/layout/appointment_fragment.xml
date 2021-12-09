@@ -49,7 +49,22 @@
         app:layout_constraintTop_toBottomOf="@id/appointment_tool_bar"
         tools:text="08 December 2021" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/emptyList"
+        android:layout_width="@dimen/empty_img_size"
+        android:layout_height="@dimen/empty_img_size"
+        android:elevation="7dp"
+        android:tint="?colorPrimary"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_empty"
+        tools:visibility="visible" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/time_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

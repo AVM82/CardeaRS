@@ -1,6 +1,6 @@
 package org.rs.cardears.core.model
 
 data class Customer(
-    val name: String,
-    val phone: String
+    val name: String? = null,
+    val phone: String? = null
 )

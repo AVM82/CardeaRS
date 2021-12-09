@@ -7,6 +7,6 @@ import org.rs.cardears.core.model.Appointment
 interface ProvidersRemoteDataSource {
 
     suspend fun syncProviders(): Flow<Response>
-    suspend fun getScheduleByDate(date: String): List<Appointment>
+    suspend fun getScheduleByDate(uuid: String, date: String, callback: (List<Appointment>) -> Unit)
 
 }

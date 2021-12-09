@@ -1,4 +1,4 @@
-package org.rs.schedule
+package org.rs.schedule.ui
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
@@ -15,11 +15,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.addRepeatingJob
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.rs.cardears.core.Response
 import org.rs.cardears.core.route.RouteActions
+import org.rs.schedule.R
+import org.rs.schedule.adapter.AppointmentAdapter
 import org.rs.schedule.databinding.AppointmentFragmentBinding
 import java.util.*
 import javax.inject.Inject
@@ -34,6 +34,10 @@ class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
     private var _binding: AppointmentFragmentBinding? = null
 
     private val viewModel: AppointmentFragmentViewModal by viewModels()
+
+    private val adapter by lazy(LazyThreadSafetyMode.NONE) {
+        AppointmentAdapter()
+    }
 
     private val date: Calendar = Calendar.getInstance()
 
@@ -56,9 +60,15 @@ class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        views {
+            timeList.adapter = adapter
+        }
+
         addRepeatingJob(Lifecycle.State.CREATED) {
             viewModel.appointmentListFlow.onEach {
                 Log.d("TAG", it.toString())
+                adapter.submitList(it)
+                views { emptyList.isVisible = it.isEmpty() }
             }.launchIn(lifecycleScope)
         }
 

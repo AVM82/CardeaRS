@@ -1,8 +1,10 @@
 package org.rs.cardears.remotestorage.repository
 
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.toObject
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -12,6 +14,7 @@ import org.rs.cardears.core.dataSource.ProvidersRemoteDataSource
 import org.rs.cardears.core.model.Appointment
 import org.rs.cardears.core.model.Customer
 import org.rs.cardears.remotestorage.di.RemoteStorageModule
+import org.rs.cardears.remotestorage.model.AppointmentDto
 import org.rs.cardears.remotestorage.model.ProviderDto
 import org.rs.cardears.remotestorage.model.toProvider
 
@@ -42,19 +45,21 @@ class ProviderRemoteRepository(private var db: FirebaseFirestore) :
         }
     }
 
-    override suspend fun getScheduleByDate(date: String) =
-        listOf(
-            Appointment(
-                time = "09:00",
-                null
-            ),
-            Appointment(
-                time = "10:00",
-                Customer(name = "Iavn", phone = "0503333333")
-            ),
-            Appointment(
-                time = "11:00",
-                null
-            )
-        )
+    override suspend fun getScheduleByDate(uuid: String, date: String, callback: (List<Appointment>) -> Unit) {
+        var appointmentList = emptyList<Appointment>()
+        db.collection(RemoteStorageModule.APPOINTMENTS_COLLECTION_NAME)
+            .whereEqualTo(RemoteStorageModule.APPOINTMENTS_UUID_FIELD, uuid)
+            .whereEqualTo(RemoteStorageModule.APPOINTMENT_DATE_FIELD, date)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (doc in documents) {
+                    val element = doc.toObject<AppointmentDto>()
+                    element.appointment?.let { appointmentList = it }
+                }
+                callback(appointmentList)
+            }
+            .addOnFailureListener {
+                callback(appointmentList)
+            }
+    }
 }
