@@ -32,7 +32,6 @@ class ProvidersViewModel @Inject constructor(
     val syncProvidersStateFlow: Flow<Response> = _syncProvidersStateFlow
 
     init {
-        Log.d("TAG", "INIT")
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 getProvidersUseCase().onEach {

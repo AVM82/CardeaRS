@@ -4,7 +4,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import org.rs.cardears.core.model.Appointment
 
-class AppointmentAdapter(private val onClickListener: OnClickListener) : ListAdapter<Appointment, AppointmentViewHolder>(DiffCallBack) {
+class AppointmentAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<Appointment, AppointmentViewHolder>(DiffCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder =
         AppointmentViewHolder.from(parent)

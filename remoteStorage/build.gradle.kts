@@ -43,9 +43,10 @@ dependencies {
 
     implementation(Deps.Google.hilt)
     implementation(Deps.AndroidX.hilt)
-    implementation("com.google.firebase:firebase-firestore-ktx:24.0.0")
-    implementation("com.google.firebase:firebase-database-ktx:20.0.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1")
+
+    implementation(Deps.Ktx.firestore)
+    implementation(Deps.Ktx.database)
+    implementation(Deps.coroutinesPlayServices)
     kapt(Deps.Kapt.dagger)
     kapt(Deps.Kapt.hilt)
 

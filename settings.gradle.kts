@@ -12,7 +12,7 @@ include(
     "core",
     "app:features:providers",
     "app:features:schedule",
-    "localStorage"
+    "localStorage",
+    "remoteStorage",
+    "ResourceModule"
 )
-include(":remoteStorage")
-include(":ResourceModule")

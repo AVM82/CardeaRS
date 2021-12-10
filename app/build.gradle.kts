@@ -64,7 +64,7 @@ dependencies {
 
     implementation(Deps.Ktx.navigationFragment)
     implementation(Deps.Ktx.navigationUi)
-    implementation("androidx.navigation:navigation-runtime-ktx:2.3.5")
+    implementation(Deps.Ktx.runtime)
 
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.junitUi)

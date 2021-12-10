@@ -45,22 +45,25 @@ dependencies {
     implementation(project(":ResourceModule"))
 
     implementation(Deps.Ktx.core)
-    implementation(Deps.Ktx.liveData)
-    implementation(Deps.Ktx.viewModel)
-    implementation(Deps.Ktx.fragment)
-
-    implementation(Deps.AndroidX.appcompat)
-    implementation(Deps.Google.material)
-    implementation(Deps.AndroidX.constraint)
 
     val lifecycleVersion = "2.4.0-alpha01"
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
 
-    // Glide
-    val glideVersion = "4.12.0"
-    implementation("com.github.bumptech.glide:glide:$glideVersion")
+//    implementation(Deps.Ktx.liveData)
+//    implementation(Deps.Ktx.viewModel)
+//    implementation(Deps.Ktx.fragment)
+
+    implementation(Deps.AndroidX.appcompat)
+    implementation(Deps.Google.material)
+    implementation(Deps.AndroidX.constraint)
+
+    implementation(Deps.Ktx.liveData)
+    implementation(Deps.Ktx.runtime)
+    implementation(Deps.Ktx.viewModel)
+
+    implementation(Deps.glide)
 
     implementation(Deps.Google.hilt)
     implementation(Deps.AndroidX.hilt)
@@ -69,9 +72,7 @@ dependencies {
 
     implementation(Deps.Ktx.navigationFragment)
     implementation(Deps.Ktx.navigationUi)
-    implementation("androidx.navigation:navigation-runtime-ktx:2.3.5")
-
-
+    implementation(Deps.Ktx.runtime)
 
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.junitUi)

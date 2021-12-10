@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.rs.cardears.core.Response
@@ -93,7 +92,6 @@ class ProvidersFragment : Fragment() {
         views { noInternet.visibility = View.GONE }
     }
 
-
     private fun renderDetailFragment(provider: Provider) {
 
         val action = ProvidersFragmentDirections.providersFragmentAction(
@@ -106,5 +104,4 @@ class ProvidersFragment : Fragment() {
     }
 
     private fun <T> views(block: ProvidersFragmentBinding.() -> T) = binding.block()
-
 }

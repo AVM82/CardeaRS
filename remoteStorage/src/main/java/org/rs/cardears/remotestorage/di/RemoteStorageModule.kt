@@ -23,6 +23,7 @@ class RemoteStorageModule {
         const val PROVIDERS_COLLECTION_NAME = "providers"
         const val APPOINTMENTS_COLLECTION_NAME = "appointments"
         const val APPOINTMENT_DATE_FIELD = "date"
+        const val APPOINTMENT_FIELD = "appointment"
         const val APPOINTMENTS_UUID_FIELD = "uuid"
     }
 

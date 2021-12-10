@@ -44,13 +44,10 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":ResourceModule"))
 
-    val lifecycleVersion = "2.4.0-alpha01"
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
 
     implementation(Deps.Ktx.core)
     implementation(Deps.Ktx.liveData)
+    implementation(Deps.Ktx.runtime)
     implementation(Deps.Ktx.viewModel)
     implementation(Deps.Ktx.fragment)
 
@@ -65,7 +62,7 @@ dependencies {
 
     implementation(Deps.Ktx.navigationFragment)
     implementation(Deps.Ktx.navigationUi)
-    implementation("androidx.navigation:navigation-runtime-ktx:2.3.5")
+    implementation(Deps.Ktx.runtime)
 
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.junitUi)

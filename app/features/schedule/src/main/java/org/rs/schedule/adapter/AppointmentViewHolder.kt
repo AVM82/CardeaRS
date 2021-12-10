@@ -10,7 +10,6 @@ import org.rs.schedule.databinding.ItemTimeBinding
 class AppointmentViewHolder(private val binding: ItemTimeBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-
     fun bind(item: Appointment) {
         views {
             appointment.text = item.time
@@ -31,5 +30,4 @@ class AppointmentViewHolder(private val binding: ItemTimeBinding) :
     }
 
     private fun <T> views(block: ItemTimeBinding.() -> T): T? = binding.block()
-
 }

@@ -4,6 +4,7 @@ object Deps {
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val room = "androidx.room:room-runtime:${Versions.room}"
+    const val coroutinesPlayServices = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${Versions.coroutinesPlayServices}"
 
     object Ktx {
         const val core = "androidx.core:core-ktx:${Versions.coreKtx}"
@@ -16,6 +17,8 @@ object Deps {
         const val navigationUi =
             "androidx.navigation:navigation-ui-ktx:${Versions.navigationKtx}"
         const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.runtimeKtx}"
+        const val firestore = "com.google.firebase:firebase-firestore-ktx:${Versions.firestore}"
+        const val database = "com.google.firebase:firebase-database-ktx:${Versions.firebaseDatabase}"
     }
 
     object Test {
@@ -40,6 +43,5 @@ object Deps {
         const val dagger = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
         const val hilt = "androidx.hilt:hilt-compiler:${Versions.hiltCompiler}"
         const val room = "androidx.room:room-compiler:${Versions.room}"
-
     }
 }

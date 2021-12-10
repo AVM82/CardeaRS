@@ -2,7 +2,13 @@ package org.rs.cardears
 
 object Versions {
 
-    const val runtimeKtx = "2.4.0"
+    const val googleServices = "4.3.10"
+    const val navigationSafeArgs = "2.3.5"
+    const val coroutinesPlayServices = "1.1.1"
+    const val firestore = "24.0.0"
+    const val firebaseDatabase = "20.0.3"
+
+    const val runtimeKtx = "2.4.0-alpha01"
     const val hiltCompiler = "1.0.0"
     const val gradlePlugin = "7.0.3"
     const val kotlin = "1.5.31"
@@ -20,8 +26,8 @@ object Versions {
     const val espresso = "3.4.0"
 
     const val coreKtx = "1.7.0"
-    const val livedataKtx = "2.4.0"
-    const val viewmodelKtx = "2.4.0"
+    const val livedataKtx = "2.4.0-alpha01"
+    const val viewmodelKtx = "2.4.0-alpha01"
     const val fragmentKtx = "1.3.6"
     const val navigationKtx = "2.3.5"
 

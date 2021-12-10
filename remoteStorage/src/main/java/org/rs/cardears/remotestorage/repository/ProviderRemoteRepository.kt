@@ -1,10 +1,8 @@
 package org.rs.cardears.remotestorage.repository
 
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.toObject
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -45,13 +43,12 @@ class ProviderRemoteRepository(private var db: FirebaseFirestore) :
         }
     }
 
-    override suspend fun getScheduleByDate(uuid: String, date: String, callback: (List<Appointment>) -> Unit) {
+    override suspend fun getScheduleByDate(
+        uuid: String, date: String, callback: (List<Appointment>) -> Unit
+    ) {
         var appointmentList = emptyList<Appointment>()
 
-        db.collection(RemoteStorageModule.APPOINTMENTS_COLLECTION_NAME)
-            .whereEqualTo(RemoteStorageModule.APPOINTMENTS_UUID_FIELD, uuid)
-            .whereEqualTo(RemoteStorageModule.APPOINTMENT_DATE_FIELD, date)
-            .get()
+        refAppointment(uuid, date)
             .addOnSuccessListener { documents ->
                 for (doc in documents) {
                     val element = doc.toObject<AppointmentDto>()
@@ -63,4 +60,32 @@ class ProviderRemoteRepository(private var db: FirebaseFirestore) :
                 callback(appointmentList)
             }
     }
+
+    override suspend fun setAppointment(
+        uuid: String,
+        date: String,
+        time: String,
+        callback: () -> Unit
+    ) {
+        refAppointment(uuid, date)
+            .addOnSuccessListener { documents ->
+                for (doc in documents) {
+                    val element = doc.toObject<AppointmentDto>()
+                    element.appointment?.find { it.time == time }?.customer =
+                        Customer(name = "null", phone = "null")
+                    db.collection(RemoteStorageModule.APPOINTMENTS_COLLECTION_NAME)
+                        .document(doc.id)
+                        .update(RemoteStorageModule.APPOINTMENT_FIELD, element.appointment)
+                        .addOnSuccessListener {
+                            callback()
+                        }
+                }
+            }
+    }
+
+    private fun refAppointment(uuid: String, date: String) =
+        db.collection(RemoteStorageModule.APPOINTMENTS_COLLECTION_NAME)
+            .whereEqualTo(RemoteStorageModule.APPOINTMENTS_UUID_FIELD, uuid)
+            .whereEqualTo(RemoteStorageModule.APPOINTMENT_DATE_FIELD, date)
+            .get()
 }

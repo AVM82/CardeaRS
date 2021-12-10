@@ -21,5 +21,4 @@ class ProvidersAdapter(private val onClickListener: OnClickListener) :
     class OnClickListener(private val clickListener: (item: Provider) -> Unit) {
         fun onClick(item: Provider) = clickListener(item)
     }
-
 }

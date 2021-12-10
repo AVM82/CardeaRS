@@ -11,10 +11,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.scopes.ActivityScoped
 import org.rs.cardears.R
-import org.rs.cardears.core.dataSource.ProvidersLocalDataSource
 import org.rs.cardears.core.route.RouteActions
-import org.rs.cardears.localstorage.repository.ProvidersLocalRepository
-import org.rs.cardears.providers.ui.ProvidersFragmentDirections
 import javax.inject.Inject
 
 @ActivityScoped
@@ -27,12 +24,6 @@ class ModuleNavigator @Inject constructor(
     }
 
     override fun navigateToSchedule(dataToPass: String) {
-//        val action = ProvidersFragmentDirections.providersFragmentAction(
-//            uuid = provider.uuid.toString(),
-//            title = provider.title,
-//            desc = provider.description ?: getString(org.rs.cardears.providers.R.string.no_desc_msg),
-//            imageUrl = provider.imageUrl ?: ""
-//        )
         val bundle = Bundle()
         bundle.putString("uuid", dataToPass)
         navController?.navigate(R.id.action_to_schedule, bundle)

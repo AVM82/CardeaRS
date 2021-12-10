@@ -9,8 +9,6 @@ dependencies {
 
     implementation(Deps.coroutines)
 
-    testImplementation(Deps.Test.junit)
-
 }
 
 java {

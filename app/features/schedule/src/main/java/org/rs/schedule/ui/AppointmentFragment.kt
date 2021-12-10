@@ -5,7 +5,6 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
 import android.text.format.DateUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +27,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
     @Inject
@@ -42,12 +40,13 @@ class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
     private var _binding: AppointmentFragmentBinding? = null
 
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
-        AppointmentAdapter(AppointmentAdapter.OnClickListener { checkedAppointment(it) })
-    }
-
-    private fun checkedAppointment(appointment: Appointment) {
-
-        TODO("Not yet implemented")
+        AppointmentAdapter(AppointmentAdapter.OnClickListener {
+            viewModel.setAppointment(
+                uuid = args.uuid,
+                date = Appointment.dateFormatPattern.getDateFormatString(),
+                it
+            )
+        })
     }
 
     private val date: Calendar = Calendar.getInstance()
@@ -70,8 +69,10 @@ class AppointmentFragment : Fragment(R.layout.appointment_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getScheduleByDate(uuid = args.uuid, date = getDateFormatString())
-Log.d("TAG", args.uuid)
+        viewModel.getScheduleByDate(
+            uuid = args.uuid,
+            date = Appointment.dateFormatPattern.getDateFormatString()
+        )
         views {
             timeList.adapter = adapter
         }
@@ -110,16 +111,15 @@ Log.d("TAG", args.uuid)
         }
         viewModel.getScheduleByDate(
             args.uuid,
-            getDateFormatString()
+            Appointment.dateFormatPattern.getDateFormatString()
         )
     }
 
     @SuppressLint("SimpleDateFormat")
-    private fun getDateFormatString(): String {
-        val format = SimpleDateFormat("dd-MM-yyyy")
+    private fun String.getDateFormatString(): String {
+        val format = SimpleDateFormat(this)
         return format.format(date.time)
-//        "${date.get(Calendar.DAY_OF_MONTH)}-${date.get(Calendar.MONTH)}-${date.get(Calendar.YEAR)}"
     }
-    private fun <T> views(block: AppointmentFragmentBinding.() -> T) = binding.block()
 
+    private fun <T> views(block: AppointmentFragmentBinding.() -> T) = binding.block()
 }
