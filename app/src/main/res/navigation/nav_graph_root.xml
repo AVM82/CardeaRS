@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_root"
+    app:startDestination="@id/nav_graph_providers">
+
+    <action
+        android:id="@+id/action_to_schedule"
+        app:destination="@id/nav_graph_schedule"
+
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        app:popUpToInclusive="false">
+
+        <argument
+            android:name="uuid"
+            app:argType="string" />
+    </action>
+
+    <action
+        android:id="@+id/action_to_providers"
+        app:destination="@id/nav_graph_root"
+
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        app:popUpToInclusive="false">
+
+        <argument
+            android:name="someArgument"
+            app:argType="string" />
+    </action>
+
+    <include app:graph="@navigation/nav_graph_providers" />
+    <include app:graph="@navigation/nav_graph_schedule" />
+
+
+</navigation>

@@ -4,13 +4,16 @@ plugins {
 }
 buildscript {
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
     }
     dependencies {
-        classpath(rs.school.rs.android2021task6.BuildPlugins.gradle)
-        classpath(rs.school.rs.android2021task6.BuildPlugins.kotlin)
-        classpath(rs.school.rs.android2021task6.BuildPlugins.hilt)
+        classpath(org.rs.cardears.BuildPlugins.gradle)
+        classpath(org.rs.cardears.BuildPlugins.kotlin)
+        classpath(org.rs.cardears.BuildPlugins.hilt)
+        classpath(org.rs.cardears.BuildPlugins.googleServices)
+        classpath(org.rs.cardears.BuildPlugins.navigationSafeArgs)
     }
 }
 
@@ -43,4 +46,3 @@ subprojects {
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
-

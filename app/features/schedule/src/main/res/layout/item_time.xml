@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/time_item"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_margin"
+    android:clickable="true"
+    android:elevation="@dimen/card_elevation"
+    android:focusable="true"
+    app:cardCornerRadius="@dimen/card_corner_radius">
+
+    <TextView
+        android:id="@+id/appointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="14dp"
+        android:textSize="20sp"
+        tools:text="09:00" />
+</androidx.cardview.widget.CardView>

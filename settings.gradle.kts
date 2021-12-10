@@ -7,4 +7,12 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "CardeaRS"
-include("app")
+include(
+    "app",
+    "core",
+    "app:features:providers",
+    "app:features:schedule",
+    "localStorage",
+    "remoteStorage",
+    "ResourceModule"
+)

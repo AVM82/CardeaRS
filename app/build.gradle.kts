@@ -1,11 +1,13 @@
-import rs.school.rs.android2021task6.ConfigData
-import rs.school.rs.android2021task6.Deps
+import org.rs.cardears.ConfigData
+import org.rs.cardears.Deps
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -40,6 +42,12 @@ android {
 
 dependencies {
 
+    implementation(project(":app:features:providers"))
+    implementation(project(":app:features:schedule"))
+    implementation(project(":localStorage"))
+    implementation(project(":remoteStorage"))
+    implementation(project(":core"))
+
     implementation(Deps.Ktx.core)
     implementation(Deps.Ktx.liveData)
     implementation(Deps.Ktx.viewModel)
@@ -49,15 +57,14 @@ dependencies {
     implementation(Deps.Google.material)
     implementation(Deps.AndroidX.constraint)
 
-    implementation(Deps.Ktx.navigationFragment)
-    implementation(Deps.Ktx.navigationUi)
-
     implementation(Deps.Google.hilt)
     implementation(Deps.AndroidX.hilt)
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     kapt(Deps.Kapt.dagger)
     kapt(Deps.Kapt.hilt)
+
+    implementation(Deps.Ktx.navigationFragment)
+    implementation(Deps.Ktx.navigationUi)
+    implementation(Deps.Ktx.runtime)
 
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.junitUi)

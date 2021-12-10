@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_providers"
+    app:startDestination="@id/providersFragment">
+
+    <fragment
+        android:id="@+id/providersFragment"
+        android:name="org.rs.cardears.providers.ui.ProvidersFragment"
+        android:label="ProvidersFragment"
+        tools:layout="@layout/providers_fragment">
+        <action
+            android:id="@+id/providersFragmentAction"
+            app:destination="@id/providerDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="uuid"
+                app:argType="string"
+                android:defaultValue=""
+                app:nullable="false" />
+            <argument
+                android:name="title"
+                app:argType="string"
+                android:defaultValue=""
+                app:nullable="false" />
+            <argument
+                android:name="desc"
+                app:argType="string"
+                android:defaultValue=""
+                app:nullable="false" />
+            <argument
+                android:name="imageUrl"
+                app:argType="string"
+                android:defaultValue=""
+                app:nullable="false" />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/providerDetailsFragment"
+        android:name="org.rs.cardears.providers.ui.providersDetails.ProviderDetailsFragment"
+        android:label="ProviderDetailsFragment"
+        tools:layout="@layout/provider_details_fragment">
+        <argument
+            android:name="uuid"
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="false" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="false" />
+        <argument
+            android:name="desc"
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="false" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="false" />
+    </fragment>
+</navigation>
